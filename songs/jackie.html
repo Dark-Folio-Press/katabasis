@@ -1,0 +1,446 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jackie — Reena The Harpy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --paper:#f4efe2;
+    --paper-dark:#e7deca;
+    --ink:#1f1a17;
+    --ember:#c85d2c;
+    --gold:#d9a441;
+    --shadow:rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    radial-gradient(circle at top, rgba(200,93,44,.08), transparent 40%),
+    linear-gradient(#181310,#0d0a08);
+    color:var(--ink);
+    font-family:Inter,sans-serif;
+    min-height:100vh;
+}
+
+.audio-player{
+    text-align:center;
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid rgba(0,0,0,.12);
+}
+
+.audio-player h3{
+    font-family:"Cormorant Garamond", serif;
+    font-size:1.5rem;
+    margin-bottom:10px;
+}
+
+.audio-player audio{
+    width:400px;
+    max-width:100%;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+}
+
+.main{
+    padding:60px;
+}
+
+.header{
+    background:var(--paper);
+    border:1px solid rgba(0,0,0,.1);
+    box-shadow:0 15px 40px var(--shadow);
+    padding:40px;
+    margin-bottom:40px;
+    position:relative;
+}
+
+.header:before{
+    content:"✶";
+    position:absolute;
+    right:25px;
+    top:15px;
+    color:var(--gold);
+    font-size:28px;
+}
+
+h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+.artist{
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    opacity:.7;
+    margin-bottom:25px;
+}
+
+.description{
+    max-width:800px;
+    line-height:1.8;
+}
+
+.lyrics{
+    background:var(--paper);
+    padding:50px;
+    box-shadow:0 15px 40px var(--shadow);
+    border:1px solid rgba(0,0,0,.08);
+}
+
+.lyrics p{
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    line-height:1.8;
+    margin-bottom:4px;
+}
+
+.section{
+    margin-bottom:45px;
+}
+
+.annotated{
+    background:
+    linear-gradient(
+        transparent 65%,
+        rgba(217,164,65,.45) 65%
+    );
+    cursor:pointer;
+    transition:.25s;
+}
+
+.annotated:hover{
+    color:var(--ember);
+}
+
+.annotation-panel{
+    position:sticky;
+    top:0;
+    height:100vh;
+    background:#13100e;
+    border-left:1px solid rgba(255,255,255,.08);
+    color:#ece4d4;
+    overflow:auto;
+}
+
+.panel-inner{
+    padding:40px;
+}
+
+.panel-title{
+    color:var(--gold);
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.panel-body{
+    line-height:1.8;
+    opacity:.95;
+}
+
+.panel-letter{
+    display:inline-block;
+    background:var(--gold);
+    color:black;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:15px;
+}
+
+.quote{
+    border-left:3px solid var(--ember);
+    padding-left:15px;
+    margin:20px 0;
+    opacity:.8;
+    font-style:italic;
+}
+
+.footer-note{
+    margin-top:25px;
+    font-size:.9rem;
+    opacity:.6;
+}
+
+@media(max-width:1000px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.annotation-panel{
+    position:fixed;
+    bottom:0;
+    top:auto;
+    left:0;
+    right:0;
+    height:45vh;
+    transform:translateY(100%);
+    transition:.35s;
+    z-index:99;
+}
+
+.annotation-panel.open{
+    transform:translateY(0);
+}
+
+.main{
+    padding:20px;
+}
+
+.lyrics{
+    padding:30px;
+}
+
+.lyrics p{
+    font-size:1.6rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+    <div class="audio-player">
+  <h3>Listen</h3>
+
+  <audio controls preload="metadata">
+  <source src="../assets/audio/Jackie.mp3" type="audio/mpeg">
+  Your browser does not support audio playback.
+</audio>
+</div>
+
+<div class="container">
+
+<div class="main">
+
+<div class="header">
+<h1>Jackie</h1>
+
+<div class="artist">
+REENA THE HARPY
+</div>
+
+<div class="description">
+A lyrical retelling of the infamous last words of rocket engineer and occultist Jack Parsons, focusing on the idea that some doors, once opened, cannot be closed.
+</div>
+</div>
+
+<div class="lyrics">
+
+<div class="section">
+<p>Jackie</p>
+<p>what did you open that night?</p>
+
+<p>
+<span class="annotated" onclick="showAnnotation('a')">
+What crossed the line when you called it down?
+</span>
+</p>
+
+<p>The air lit up like a promise</p>
+<p>And the earth answered back</p>
+
+<p>who stood with you in the flame?</p>
+
+<p>Was it her face or the fire’s own shape?</p>
+
+<p>You swore you knew what you were working</p>
+
+<p>but fire doesn’t stay contained.</p>
+
+<p>She wore her well</p>
+<p>red hair, red mouth</p>
+
+<p>
+<span class="annotated" onclick="showAnnotation('b')">
+Wore her out
+</span>
+</p>
+</div>
+
+<div class="section">
+<p>Jackie</p>
+
+<p>
+<span class="annotated" onclick="showAnnotation('c')">
+did you think it was love?
+</span>
+</p>
+
+<p>Or just the thrill of the veil pulled thin?</p>
+
+<p>You married a spark wearing human skin</p>
+
+<p>but fire doesn’t stay contained.</p>
+
+<p>You called her down</p>
+<p>through blood and sigil</p>
+<p>through word and will and broken sleep</p>
+
+<p>
+<span class="annotated" onclick="showAnnotation('d')">
+She took the shape you needed most
+</span>
+</p>
+
+<p>
+<span class="annotated" onclick="showAnnotation('e')">
+but kept the part you couldn’t see
+</span>
+</p>
+
+<p>She said, you would be cast out</p>
+<p>cut off</p>
+<p>A lonely wanderer</p>
+<p>in abominable places.</p>
+
+<p>
+<span class="annotated" onclick="showAnnotation('f')">
+You said, yes, yes, yes
+</span>
+</p>
+</div>
+
+<div class="section">
+<p>Jackie</p>
+
+<p>the floor gave way beneath</p>
+<p>The air split open, the walls burst</p>
+<p>And in the burn</p>
+<p>A shape</p>
+<p>hair moving</p>
+<p>Like she belonged there</p>
+
+<p>they pulled you from the fire</p>
+
+<p>But you were already somewhere else</p>
+
+<p>Half in the body, half in the vow</p>
+
+<p>Croaking I’m not done. Not done, not done.</p>
+</div>
+
+<div class="section">
+<p>Jackie</p>
+
+<p>What stepped out of the light you tore apart?</p>
+
+<p>
+<span class="annotated" onclick="showAnnotation('g')">
+was it a trick? Or did you finish what you begun?
+</span>
+</p>
+</div>
+
+</div>
+</div>
+
+<aside class="annotation-panel" id="panel">
+<div class="panel-inner">
+
+<div class="panel-letter">A</div>
+
+<div class="panel-title">
+Jackie 
+</div>
+
+<div class="panel-letter">✶</div>
+
+<div class="panel-title">
+Annotations
+</div>
+
+<div class="panel-body" id="annotationText">
+Select a highlighted lyric to reveal notes, references, and commentary.
+</div>
+
+<div class="footer-note">
+Annotated edition • Reena The Harpy
+</div>
+
+</div>
+</aside>
+
+</div>
+
+<script>
+
+const annotations = {
+
+a:{
+title:"The Babalon Working",
+text:`John Whiteside Parsons (“Jack”) famously participated in the Babalon Working alongside L. Ron Hubbard. Parsons believed the ritual successfully invoked or manifested Babalon, a divine feminine figure within Thelemic tradition. The lyric asks whether something genuinely crossed over—or whether the act of invocation itself changed him forever.`
+},
+
+b:{
+title:"Marjorie Cameron",
+text:`Shortly after the Babalon Working, Parsons met Marjorie Cameron, whom he identified as the elemental woman foretold by the ritual. Her striking appearance and intense presence led him to believe she was the fulfillment of the working's purpose.`
+},
+
+c:{
+title:"Love or Revelation",
+text:`Parsons and Cameron married in 1946, though their relationship was turbulent and marked by separations and reunions. The song questions whether Parsons found love—or whether he became captivated by the mystery he believed he had summoned.`
+},
+
+d:{
+title:"Taking the Desired Shape",
+text:`Folklore is filled with spirits, faeries, daimons, and dream figures that appear in forms tailored to the observer's expectations. The line reflects the idea that supernatural encounters often arrive disguised as exactly what the seeker most desires.`
+},
+
+e:{
+title:"The Unseen Portion",
+text:`A recurring theme in occult literature is that revelation is always partial. Parsons may have seen only what he needed—or wanted—to see, while deeper consequences remained hidden from him.`
+},
+
+f:{
+title:"The Wanderer's Curse",
+text:`This echoes prophetic warnings and mythic curses found throughout religious and folkloric traditions. The pursuit of forbidden knowledge often carries exile, isolation, or spiritual displacement as its price.`
+},
+
+g:{
+title:"The Door Left Open",
+text:`Legends surrounding Parsons continue to inspire speculation. Some occult traditions emphasize the importance of formally closing rituals and ceremonial workings. Rumors persist that Parsons never truly closed the Babalon Working, giving rise to stories that whatever crossed the threshold may still linger. The song leaves that question unresolved.`
+}
+
+};
+
+function showAnnotation(key){
+
+const panel = document.getElementById("panel");
+
+document.querySelector(".panel-letter").textContent =
+key.toUpperCase();
+
+document.querySelector(".panel-title").textContent =
+annotations[key].title;
+
+document.getElementById("annotationText").innerHTML =
+annotations[key].text;
+
+panel.classList.add("open");
+}
+</script>
+
+</body>
+</html>
+```

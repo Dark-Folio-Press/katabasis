@@ -1,0 +1,487 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Torch Song — Reena The Harpy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --paper:#f4efe2;
+    --paper-dark:#e7deca;
+    --ink:#1f1a17;
+    --ember:#c85d2c;
+    --gold:#d9a441;
+    --shadow:rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    radial-gradient(circle at top, rgba(200,93,44,.08), transparent 40%),
+    linear-gradient(#181310,#0d0a08);
+    color:var(--ink);
+    font-family:Inter,sans-serif;
+    min-height:100vh;
+}
+
+.audio-player{
+    text-align:center;
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid rgba(0,0,0,.12);
+}
+
+.audio-player h3{
+    font-family:"Cormorant Garamond", serif;
+    font-size:1.5rem;
+    margin-bottom:10px;
+}
+
+.audio-player audio{
+    width:400px;
+    max-width:100%;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+}
+
+.main{
+    padding:60px;
+}
+
+.header{
+    background:var(--paper);
+    border:1px solid rgba(0,0,0,.1);
+    box-shadow:0 15px 40px var(--shadow);
+    padding:40px;
+    margin-bottom:40px;
+    position:relative;
+}
+
+.header:before{
+    content:"✶";
+    position:absolute;
+    right:25px;
+    top:15px;
+    color:var(--gold);
+    font-size:28px;
+}
+
+h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+.artist{
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    opacity:.7;
+    margin-bottom:25px;
+}
+
+.description{
+    max-width:800px;
+    line-height:1.8;
+}
+
+.lyrics{
+    background:var(--paper);
+    padding:50px;
+    box-shadow:0 15px 40px var(--shadow);
+    border:1px solid rgba(0,0,0,.08);
+}
+
+.lyrics p{
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    line-height:1.8;
+    margin-bottom:4px;
+}
+
+.section{
+    margin-bottom:45px;
+}
+
+.annotated{
+    background:
+    linear-gradient(
+        transparent 65%,
+        rgba(217,164,65,.45) 65%
+    );
+    cursor:pointer;
+    transition:.25s;
+}
+
+.annotated:hover{
+    color:var(--ember);
+}
+
+.annotation-panel{
+    position:sticky;
+    top:0;
+    height:100vh;
+    background:#13100e;
+    border-left:1px solid rgba(255,255,255,.08);
+    color:#ece4d4;
+    overflow:auto;
+}
+
+.panel-inner{
+    padding:40px;
+}
+
+.panel-title{
+    color:var(--gold);
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.panel-body{
+    line-height:1.8;
+    opacity:.95;
+}
+
+.panel-letter{
+    display:inline-block;
+    background:var(--gold);
+    color:black;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:15px;
+}
+
+.quote{
+    border-left:3px solid var(--ember);
+    padding-left:15px;
+    margin:20px 0;
+    opacity:.8;
+    font-style:italic;
+}
+
+.footer-note{
+    margin-top:25px;
+    font-size:.9rem;
+    opacity:.6;
+}
+
+@media(max-width:1000px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.annotation-panel{
+    position:fixed;
+    bottom:0;
+    top:auto;
+    left:0;
+    right:0;
+    height:45vh;
+    transform:translateY(100%);
+    transition:.35s;
+    z-index:99;
+}
+
+.annotation-panel.open{
+    transform:translateY(0);
+}
+
+.main{
+    padding:20px;
+}
+
+.lyrics{
+    padding:30px;
+}
+
+.lyrics p{
+    font-size:1.6rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+  <div class="audio-player">
+  <h3>Listen</h3>
+
+  <audio controls preload="metadata">
+    <source src="../assets/audio/torch-song.mp3" type="audio/mpeg">
+    Your browser does not support audio playback.
+  </audio>
+</div>
+
+<div class="container">
+
+<div class="main">
+
+<div class="header">
+<h1>The Torch Song</h1>
+
+<div class="artist">
+REENA THE HARPY
+</div>
+
+<div class="description">
+Part warning, part invitation, part promise. This song imagines Liberty as an ancient witness who has watched wealth, power, migration, corruption, and empires rise and fall and who still carries a torch for the hopeful.
+</div>
+</div>
+
+<div class="lyrics">
+
+<div class="section">
+<p>No, really.</p>
+<span class="annotated" onclick="showAnnotation('a')">
+Look up.
+</span>
+
+<p>I've been standing here</p>
+<span class="annotated" onclick="showAnnotation('b')">
+before the skyline.
+</span>
+<p>Before the freeways.</p>
+<p>Before the billionaires.</p>
+<p>Before every man</p>
+<p>who thought he could buy this land.</p>
+
+<p>I see you.</p>
+
+<span class="annotated" onclick="showAnnotation('c')">
+<p>The tired.</p>
+<p>The hungry.</p>
+<p>The loud.</p>
+<p>The scared.</p>
+</span>
+
+<p>I know your names.</p>
+
+<p>And I know theirs too.</p>
+
+<p>The ones selling fear for profit</p>
+<p>and calling cages freedom.</p>
+
+<p>Don't think I missed it.</p>
+
+<p>I carry a torch.</p>
+
+<p>For the lost.</p>
+
+<p>For the hopeful.</p>
+
+<p>For the ones crossing dark water</p>
+<p>looking for a shore.</p>
+
+<p>For a victorious cocktail</p>
+<p>at the end of a long day</p>
+
+<p>A torch lights the way,</p>
+<p>and burns it down</p>
+<p>too</p>
+
+<p>I am the light</p>
+<p>that won't shut off.</p>
+
+<p>I am the flood</p>
+<p>that climbs the banks.</p>
+
+<p>The wave</p>
+<p>that takes the dock.</p>
+
+<p>The wildfire</p>
+<p>crossing county lines.</p>
+
+<p>I am the bear</p>
+<p>at the edge of the treeline.</p>
+
+<p>The mountain lion</p>
+<p>watching from the rocks.</p>
+
+<p>I don't chase.</p>
+
+<p>I wait.</p>
+
+<p>I was here before the towers.</p>
+
+<p>Before the borders.</p>
+
+<p>Before the money.</p>
+
+<p>Before the deals.</p>
+
+<p>And yeah.</p>
+
+<p>I saw that too.</p>
+
+<p>The counterfeit kings.</p>
+
+<p>The seat-stealers.</p>
+
+<p>The freedom-talkers</p>
+<p>with chains hidden in their pockets.</p>
+
+<p>I see every one of them.</p>
+
+<p>I know every lie.</p>
+
+<p>Every handshake.</p>
+
+<p>Every backroom bargain.</p>
+
+<p>Every promise sold cheap.</p>
+
+<p>You think darkness protects you?</p>
+
+<p>Baby,</p>
+
+<p>I carry a torch.</p>
+
+<p>You think height protects you?</p>
+
+<p>I got mountains.</p>
+
+<p>You think walls protect you?</p>
+
+<p>Ask every town</p>
+<p>that thought the river was bluffing.</p>
+
+<p>I rise,</p>
+<p>people notice.</p>
+
+<p>I speak,</p>
+<p>markets shudder.</p>
+
+<p>I point,</p>
+<p>regimes fall</p>
+<p>and empires shake.</p>
+
+<p>The torch shows everything.</p>
+
+<p>Seek courage.</p>
+
+<p>Because truth's got claws.</p>
+
+<p>Truth's got teeth.</p>
+
+<p>Truth's got paws</p>
+<p>the size of dinner plates.</p>
+
+<p>Truth walks slow.</p>
+
+<p>Like a bear crossing the highway.</p>
+
+<p>Everybody sees it.</p>
+
+<p>Nobody stops it.</p>
+
+<p>I didn't come here</p>
+<p>to welcome tyrants.</p>
+
+<p>I came here</p>
+<p>to make them irrelevant.</p>
+
+<p>So stand up.</p>
+
+<p>Raise your head.</p>
+
+<p>Hold your ground.</p>
+
+<p>The flood is rising.</p>
+
+<p>The fire is spreading.</p>
+
+<p>That's what a torch is for.</p>
+
+</div>
+
+</div>
+</div>
+
+<aside class="annotation-panel" id="panel">
+<div class="panel-inner">
+
+<div class="panel-letter">A</div>
+
+<div class="panel-title">
+<p>The Torch Song </p>
+<p>noun: to hold the 'light of affection' for.</p>
+</div>
+
+
+<div class="panel-letter">✶</div>
+
+<div class="panel-title">
+Annotations
+</div>
+
+<div class="panel-body" id="annotationText">
+Select a highlighted lyric to reveal notes, references, and commentary.
+</div>
+
+<div class="footer-note">
+Annotated edition • Reena The Harpy
+</div>
+
+</div>
+</aside>
+
+</div>
+
+<script>
+
+const annotations = {
+
+a:{
+title:"Don't Look Up",
+text:`Referring to the film Don't Look Up starring Leonardo DiCaprio and Jennifer Lawrence. The lyric functions as both a cultural reference and a challenge to pay attention to what is happening in plain sight.`
+},
+
+b:{
+title:"Before the Skyline",
+text:`A play on words, The Spirit of Liberty has stood before as in front of and before as in prior to`
+},
+
+c:{
+title:"The New Colossus",
+text:`referring the the sonnet "The New Colossus by American Poet Emma Lazarus inscribed in Colossus of the Statue itself. https://en.wikipedia.org/wiki/The_New_Colossus`
+},
+
+};
+
+function showAnnotation(key){
+
+const panel = document.getElementById("panel");
+
+document.querySelector(".panel-letter").textContent =
+key.toUpperCase();
+
+document.querySelector(".panel-title").textContent =
+annotations[key].title;
+
+document.getElementById("annotationText").innerHTML =
+annotations[key].text;
+
+panel.classList.add("open");
+}
+</script>
+
+</body>
+</html>
+```
