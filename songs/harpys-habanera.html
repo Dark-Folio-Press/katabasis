@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harpy's Habanera — Reena The Harpy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --paper:#f4efe2;
+    --paper-dark:#e7deca;
+    --ink:#1f1a17;
+    --ember:#c85d2c;
+    --gold:#d9a441;
+    --shadow:rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    radial-gradient(circle at top, rgba(200,93,44,.08), transparent 40%),
+    linear-gradient(#181310,#0d0a08);
+    color:var(--ink);
+    font-family:Inter,sans-serif;
+    min-height:100vh;
+}
+
+.audio-player{
+    text-align:center;
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid rgba(0,0,0,.12);
+}
+
+.audio-player h3{
+    font-family:"Cormorant Garamond", serif;
+    font-size:1.5rem;
+    margin-bottom:10px;
+    color:#ece4d4;
+}
+
+.audio-player audio{
+    width:400px;
+    max-width:100%;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+}
+
+.main{
+    padding:60px;
+}
+
+.header{
+    background:var(--paper);
+    border:1px solid rgba(0,0,0,.1);
+    box-shadow:0 15px 40px var(--shadow);
+    padding:40px;
+    margin-bottom:40px;
+    position:relative;
+}
+
+.header:before{
+    content:"♪";
+    position:absolute;
+    right:25px;
+    top:12px;
+    color:var(--gold);
+    font-size:28px;
+}
+
+h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+.artist{
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    opacity:.7;
+    margin-bottom:25px;
+}
+
+.description{
+    max-width:800px;
+    line-height:1.8;
+}
+
+.lyrics{
+    background:var(--paper);
+    padding:50px;
+    box-shadow:0 15px 40px var(--shadow);
+    border:1px solid rgba(0,0,0,.08);
+}
+
+.lyrics p{
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    line-height:1.8;
+    margin-bottom:4px;
+}
+
+.section{
+    margin-bottom:45px;
+}
+
+.refrain p{
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.annotation-panel{
+    position:sticky;
+    top:0;
+    height:100vh;
+    background:#13100e;
+    border-left:1px solid rgba(255,255,255,.08);
+    color:#ece4d4;
+    overflow:auto;
+}
+
+.panel-inner{
+    padding:40px;
+}
+
+.panel-title{
+    color:var(--gold);
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.panel-body{
+    line-height:1.8;
+    opacity:.95;
+}
+
+.panel-letter{
+    display:inline-block;
+    background:var(--gold);
+    color:black;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:15px;
+}
+
+.quote{
+    border-left:3px solid var(--ember);
+    padding-left:15px;
+    margin:20px 0;
+    opacity:.8;
+    font-style:italic;
+}
+
+.footer-note{
+    margin-top:25px;
+    font-size:.9rem;
+    opacity:.6;
+}
+
+@media(max-width:1000px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.annotation-panel{
+    position:fixed;
+    bottom:0;
+    top:auto;
+    left:0;
+    right:0;
+    height:45vh;
+    transform:translateY(100%);
+    transition:.35s;
+    z-index:99;
+}
+
+.annotation-panel.open{
+    transform:translateY(0);
+}
+
+.main{
+    padding:20px;
+}
+
+.lyrics{
+    padding:30px;
+}
+
+.lyrics p{
+    font-size:1.6rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+  <div class="audio-player">
+  <h3>Listen</h3>
+
+  <audio controls preload="metadata">
+    <source src="../assets/audio/harpys-habanera.mp3" type="audio/mpeg">
+    Your browser does not support audio playback.
+  </audio>
+</div>
+
+<div class="container">
+
+<div class="main">
+
+<div class="header">
+<h1>Harpy's Habanera</h1>
+
+<div class="artist">
+REENA THE HARPY
+</div>
+
+<div class="description">
+A translation and rewrite of "L'amour est un oiseau rebelle" — the Habanera from Bizet's Carmen (1875) — pulled out of the 19th century and stripped down to something modern, blunt, and a little dangerous.
+</div>
+</div>
+
+<div class="lyrics">
+
+<div class="section">
+<p>Love is a rebellious bird</p>
+<p>that nobody can tame,</p>
+<p>No point in calling it</p>
+<p>If it doesn't care to come nothing helps.</p>
+<p>No Hope, No Prayer</p>
+</div>
+
+<div class="section">
+<p>One man talks well, the other's quiet;</p>
+<p>it's the other one that I prefer.</p>
+<p>He's silent but I like the way he looks.</p>
+</div>
+
+<div class="section refrain">
+<p>Love! Love! Love! Love!</p>
+</div>
+
+<div class="section">
+<p>Love is a feral child,</p>
+<p>it has never, ever, known a law;</p>
+<p>love me not, then I love you;</p>
+<p>if I love you, you'd best beware!</p>
+</div>
+
+<div class="section">
+<p>The bird you thought you had</p>
+<p>beat its wings and flew away …</p>
+</div>
+
+<div class="section">
+<p>When love stays away, you wait and wait;</p>
+<p>when least expected, there it is!</p>
+</div>
+
+<div class="section">
+<p>All around you, swift, so swift,</p>
+<p>it comes, it goes, and then returns …</p>
+
+<p>you think you hold it fast, it flees</p>
+<p>you think you're free, it holds you fast.</p>
+</div>
+
+<div class="section refrain">
+<p>Love! Love! Love! Love!</p>
+</div>
+
+<div class="section">
+<p>Love is a feral child,</p>
+<p>it has never, ever, known a law;</p>
+<p>love me not, then I love you;</p>
+<p>if I love you, you'd best beware!</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<aside class="annotation-panel" id="panel">
+<div class="panel-inner">
+
+<div class="panel-letter">♪</div>
+
+<div class="panel-title">
+<p>Harpy's Habanera </p>
+<p style="font-size:1rem; font-family:Inter,sans-serif; opacity:.7; margin-top:6px;">after Bizet's Carmen, 1875</p>
+</div>
+
+<div class="panel-body" id="annotationText">
+No annotations for this one — the words speak plainly.
+</div>
+
+<div class="footer-note">
+Annotated edition • Reena The Harpy
+</div>
+
+</div>
+</aside>
+
+</div>
+
+</body>
+</html>

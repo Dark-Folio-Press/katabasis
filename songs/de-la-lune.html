@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De La Lune — Reena The Harpy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --paper:#f4efe2;
+    --paper-dark:#e7deca;
+    --ink:#1f1a17;
+    --ember:#c85d2c;
+    --gold:#d9a441;
+    --shadow:rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    radial-gradient(circle at top, rgba(200,93,44,.08), transparent 40%),
+    linear-gradient(#181310,#0d0a08);
+    color:var(--ink);
+    font-family:Inter,sans-serif;
+    min-height:100vh;
+}
+
+.audio-player{
+    text-align:center;
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid rgba(0,0,0,.12);
+}
+
+.audio-player h3{
+    font-family:"Cormorant Garamond", serif;
+    font-size:1.5rem;
+    margin-bottom:10px;
+    color:#ece4d4;
+}
+
+.audio-player a.listen-link{
+    display:inline-block;
+    margin-top:6px;
+    padding:10px 22px;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    text-decoration:none;
+    font-family:Inter,sans-serif;
+    font-size:.85rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    border-radius:999px;
+    transition:.25s;
+}
+
+.audio-player a.listen-link:hover{
+    background:var(--gold);
+    color:#13100e;
+}
+
+.audio-player audio{
+    width:400px;
+    max-width:100%;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+}
+
+.main{
+    padding:60px;
+}
+
+.header{
+    background:var(--paper);
+    border:1px solid rgba(0,0,0,.1);
+    box-shadow:0 15px 40px var(--shadow);
+    padding:40px;
+    margin-bottom:40px;
+    position:relative;
+}
+
+.header:before{
+    content:"☾";
+    position:absolute;
+    right:25px;
+    top:12px;
+    color:var(--gold);
+    font-size:28px;
+}
+
+h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+.artist{
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    opacity:.7;
+    margin-bottom:25px;
+}
+
+.description{
+    max-width:800px;
+    line-height:1.8;
+}
+
+.lyrics{
+    background:var(--paper);
+    padding:50px;
+    box-shadow:0 15px 40px var(--shadow);
+    border:1px solid rgba(0,0,0,.08);
+}
+
+.lyrics p.fr{
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    line-height:1.8;
+    margin-bottom:4px;
+}
+
+.lyrics p.en{
+    font-family:"Cormorant Garamond",serif;
+    font-style:italic;
+    font-size:1.6rem;
+    opacity:.75;
+    line-height:1.8;
+    margin-bottom:4px;
+}
+
+.section{
+    margin-bottom:45px;
+}
+
+.annotated{
+    display:block;
+    background:
+    linear-gradient(
+        transparent 62%,
+        rgba(217,164,65,.45) 62%
+    );
+    cursor:pointer;
+    transition:.25s;
+}
+
+.annotated:hover .fr,
+.annotated:hover .en{
+    color:var(--ember);
+}
+
+.annotation-panel{
+    position:sticky;
+    top:0;
+    height:100vh;
+    background:#13100e;
+    border-left:1px solid rgba(255,255,255,.08);
+    color:#ece4d4;
+    overflow:auto;
+}
+
+.panel-inner{
+    padding:40px;
+}
+
+.panel-title{
+    color:var(--gold);
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.panel-body{
+    line-height:1.8;
+    opacity:.95;
+}
+
+.panel-letter{
+    display:inline-block;
+    background:var(--gold);
+    color:black;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:15px;
+}
+
+.quote{
+    border-left:3px solid var(--ember);
+    padding-left:15px;
+    margin:20px 0;
+    opacity:.8;
+    font-style:italic;
+}
+
+.footer-note{
+    margin-top:25px;
+    font-size:.9rem;
+    opacity:.6;
+}
+
+@media(max-width:1000px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.annotation-panel{
+    position:fixed;
+    bottom:0;
+    top:auto;
+    left:0;
+    right:0;
+    height:45vh;
+    transform:translateY(100%);
+    transition:.35s;
+    z-index:99;
+}
+
+.annotation-panel.open{
+    transform:translateY(0);
+}
+
+.main{
+    padding:20px;
+}
+
+.lyrics{
+    padding:30px;
+}
+
+.lyrics p.fr{
+    font-size:1.6rem;
+}
+
+.lyrics p.en{
+    font-size:1.3rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+  <div class="audio-player">
+  <h3>Listen</h3>
+  <a class="listen-link" href="https://suno.com/song/d9703eb8-2cc6-4d93-bf05-bde0ce3f9d50" target="_blank" rel="noopener">Play on Suno ↗</a>
+</div>
+
+<div class="container">
+
+<div class="main">
+
+<div class="header">
+<h1>De La Lune</h1>
+
+<div class="artist">
+REENA THE HARPY
+</div>
+
+<div class="description">
+A borrowed lullaby. The opening line lifts the 18th-century French nursery rhyme "Au clair de la lune" — a neighbor asking for a light to finish writing by — and turns the request for fire into a flirtation, then into cosmology: the same spark that lights a candle is the same fire every atom in us once burned in.
+</div>
+</div>
+
+<div class="lyrics">
+
+<div class="section">
+
+<p class="fr">Au clair de la lune, ma chandelle est morte.</p>
+
+<span class="annotated" onclick="showAnnotation('a')">
+<p class="fr">Tu as du feu ?</p>
+</span>
+
+<p class="fr">De la lune. De la lune. De la lune.</p>
+<p class="fr">Nous naissons des cendres d'étoiles mortes.</p>
+
+</div>
+
+<div class="section">
+
+<p class="en">By the light of the moon, my candle is dead.</p>
+<p class="en">Do you have a spark?</p>
+<p class="en">From the moon. From the moon. From the moon.</p>
+
+<span class="annotated" onclick="showAnnotation('b')">
+<p class="en">We are all born from the ashes of dead stars</p>
+</span>
+
+</div>
+
+<div class="section">
+
+<p class="fr">Au clair de la lune, ma chandelle est mortes.</p>
+<p class="fr">Tu as du feu ?</p>
+<p class="fr">De la lune. De la lune. De la lune.</p>
+<p class="fr">Nous naissons des cendres d'étoiles mortes.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<aside class="annotation-panel" id="panel">
+<div class="panel-inner">
+
+<div class="panel-letter">☾</div>
+
+<div class="panel-title">
+<p>De La Lune </p>
+<p style="font-size:1rem; font-family:Inter,sans-serif; opacity:.7; margin-top:6px;">noun, French: "of the moon" — light that is never its own, only ever lent.</p>
+</div>
+
+
+<div class="panel-letter">✶</div>
+
+<div class="panel-title">
+Annotations
+</div>
+
+<div class="panel-body" id="annotationText">
+Select a highlighted lyric to reveal notes, references, and commentary.
+</div>
+
+<div class="footer-note">
+Annotated edition • Reena The Harpy
+</div>
+
+</div>
+</aside>
+
+</div>
+
+<script>
+
+const annotations = {
+
+a:{
+title:"Tu as du feu?",
+text:`A known French double entendre, kind of like in English saying someone is Lit, On Fire, or Hot.`
+},
+
+b:{
+title:"Ashes of Dead Stars",
+text:`A poetic blend of the classic French nursery rhyme Au clair de la lune with Carl Sagan's famous cosmic truth captures a beautiful, melancholy reality: light fades, but our fundamental elements are eternal.`
+},
+
+};
+
+function showAnnotation(key){
+
+const panel = document.getElementById("panel");
+
+document.querySelector(".panel-letter").textContent =
+key.toUpperCase();
+
+document.querySelector(".panel-title").textContent =
+annotations[key].title;
+
+document.getElementById("annotationText").innerHTML =
+annotations[key].text;
+
+panel.classList.add("open");
+}
+</script>
+
+</body>
+</html>

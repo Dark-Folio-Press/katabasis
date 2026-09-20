@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Poppet — Reena The Harpy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --paper:#f4efe2;
+    --paper-dark:#e7deca;
+    --ink:#1f1a17;
+    --ember:#c85d2c;
+    --gold:#d9a441;
+    --shadow:rgba(0,0,0,.35);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    radial-gradient(circle at top, rgba(200,93,44,.08), transparent 40%),
+    linear-gradient(#181310,#0d0a08);
+    color:var(--ink);
+    font-family:Inter,sans-serif;
+    min-height:100vh;
+}
+
+.audio-player{
+    text-align:center;
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid rgba(0,0,0,.12);
+}
+
+.audio-player h3{
+    font-family:"Cormorant Garamond", serif;
+    font-size:1.5rem;
+    margin-bottom:10px;
+    color:#ece4d4;
+}
+
+.audio-player audio{
+    width:400px;
+    max-width:100%;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+}
+
+.main{
+    padding:60px;
+}
+
+.header{
+    background:var(--paper);
+    border:1px solid rgba(0,0,0,.1);
+    box-shadow:0 15px 40px var(--shadow);
+    padding:40px;
+    margin-bottom:40px;
+    position:relative;
+}
+
+.header:before{
+    content:"✶";
+    position:absolute;
+    right:25px;
+    top:15px;
+    color:var(--gold);
+    font-size:28px;
+}
+
+h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+.artist{
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    opacity:.7;
+    margin-bottom:25px;
+}
+
+.description{
+    max-width:800px;
+    line-height:1.8;
+}
+
+.lyrics{
+    background:var(--paper);
+    padding:50px;
+    box-shadow:0 15px 40px var(--shadow);
+    border:1px solid rgba(0,0,0,.08);
+}
+
+.lyrics p{
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    line-height:1.8;
+    margin-bottom:4px;
+}
+
+.section{
+    margin-bottom:45px;
+}
+
+.section-label{
+    display:block;
+    font-family:Inter,sans-serif;
+    font-size:.8rem;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--ember);
+    opacity:.75;
+    margin-bottom:10px;
+}
+
+.stage{
+    font-family:Inter,sans-serif;
+    font-style:italic;
+    font-size:1.1rem;
+    opacity:.6;
+}
+
+.aside-line{
+    font-size:1.4rem;
+    font-style:italic;
+    opacity:.65;
+}
+
+.chorus p{
+    font-weight:600;
+}
+
+.annotated{
+    background:
+    linear-gradient(
+        transparent 65%,
+        rgba(217,164,65,.45) 65%
+    );
+    cursor:pointer;
+    transition:.25s;
+}
+
+.annotated:hover{
+    color:var(--ember);
+}
+
+.annotation-panel{
+    position:sticky;
+    top:0;
+    height:100vh;
+    background:#13100e;
+    border-left:1px solid rgba(255,255,255,.08);
+    color:#ece4d4;
+    overflow:auto;
+}
+
+.panel-inner{
+    padding:40px;
+}
+
+.panel-title{
+    color:var(--gold);
+    font-family:"Cormorant Garamond",serif;
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.panel-body{
+    line-height:1.8;
+    opacity:.95;
+}
+
+.panel-letter{
+    display:inline-block;
+    background:var(--gold);
+    color:black;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:999px;
+    margin-bottom:15px;
+}
+
+.quote{
+    border-left:3px solid var(--ember);
+    padding-left:15px;
+    margin:20px 0;
+    opacity:.8;
+    font-style:italic;
+}
+
+.footer-note{
+    margin-top:25px;
+    font-size:.9rem;
+    opacity:.6;
+}
+
+@media(max-width:1000px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.annotation-panel{
+    position:fixed;
+    bottom:0;
+    top:auto;
+    left:0;
+    right:0;
+    height:45vh;
+    transform:translateY(100%);
+    transition:.35s;
+    z-index:99;
+}
+
+.annotation-panel.open{
+    transform:translateY(0);
+}
+
+.main{
+    padding:20px;
+}
+
+.lyrics{
+    padding:30px;
+}
+
+.lyrics p{
+    font-size:1.6rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+  <div class="audio-player">
+  <h3>Listen</h3>
+
+  <audio controls preload="metadata">
+    <source src="../assets/audio/the-poppet.mp3" type="audio/mpeg">
+    Your browser does not support audio playback.
+  </audio>
+</div>
+
+<div class="container">
+
+<div class="main">
+
+<div class="header">
+<h1>The Poppet</h1>
+
+<div class="artist">
+REENA THE HARPY
+</div>
+
+<div class="description">
+A retelling of "Vasilisa the Beautiful" in song — a starving girl, the wooden doll her dying mother left behind, and a night sent into the forest to beg fire from a witch who eats the girls who fail her.
+</div>
+</div>
+
+<div class="lyrics">
+
+<div class="section">
+<span class="section-label">Intro</span>
+<p>2, 3, 4</p>
+</div>
+
+<div class="section">
+<span class="section-label">Verse 1</span>
+<p>Eat, little doll, eat!</p>
+<p>Listen to my grief and meet my need.</p>
+<p>I live in my father's house,</p>
+<p>yet find no joy.</p>
+<p>My cruel stepmother glares</p>
+<p>while I get scraps</p>
+</div>
+
+<div class="section">
+<span class="section-label">Response</span>
+<span class="annotated" onclick="showAnnotation('a')">
+<p>Weep not, sleep in peace,</p>
+<p>the morning is wiser than the evening.</p>
+</span>
+<p>Weep not, sleep in peace,</p>
+<p>my little girl.</p>
+</div>
+
+<div class="section">
+<span class="section-label">Pre-Chorus</span>
+<p>Eat, little doll, eat!</p>
+<p>They sent me to the forest witch tonight,</p>
+<p>For a flame, without any light</p>
+<p>They think they're rid of my mouth to feed,</p>
+<p>Tonight, I die!</p>
+</div>
+
+<div class="section chorus">
+<span class="section-label">Chorus</span>
+<p>Eat, little doll, eat!</p>
+<p>Take this trembling from me.</p>
+<p>Speak, my darling poppet,</p>
+<p>Tell me I am not alone.</p>
+<p class="aside-line">(you are not alone)</p>
+<p>Follow the path ahead,</p>
+<p>and bring us home.</p>
+</div>
+
+<div class="section">
+<span class="section-label">Verse 1.5</span>
+<p>She was waiting at the gate,</p>
+<p>wrapped in a shawl that smelled like smoke and sap.</p>
+<p>No broom, no cackling,</p>
+<p>just a look that sized me up.</p>
+
+<p>"Work for me till the moon turns," she said,</p>
+<p>"sort the needles, split the kindling, scrub the floor.</p>
+<p>Do it clean.</p>
+<p>If you fail, little girl,</p>
+<p>I'll eat you whole before dawn.</p>
+<p>The witch turned her heel and walked into the night.</p>
+</div>
+
+<div class="section">
+<span class="section-label">Verse 2</span>
+<p>The doll's eyes sparked</p>
+<p>like coals under a blown-out pot.</p>
+<p>It moved beside me, quick and quiet,</p>
+<p>all ember-edge and grit.</p>
+<p>It worked the blackened floor,</p>
+<p>Split the kindling, sorted the needles</p>
+</div>
+
+<div class="section">
+<span class="section-label">Response</span>
+<p>Weep not, and wake now,</p>
+<p>the morning is wiser than the evening.</p>
+<p>and the witch will be here at daylight</p>
+<p>Be brave and follow my lead</p>
+<p>Check the door!</p>
+</div>
+
+<div class="section">
+<span class="section-label">Verse 3</span>
+<span class="annotated" onclick="showAnnotation('b')">
+<p>the forest witch snored,</p>
+<p>heavy as a log in the next room.</p>
+<p>I eased the door, I held my breath,</p>
+<p>I slipped past the little house on chicken legs.</p>
+</span>
+<p>The yard had skulls on poles,</p>
+<p>teeth catching the moon.</p>
+<p class="stage">[Whispered] I whimpered,</p>
+<p>the doll said, "Now, girl.</p>
+<p>Snag one for the road.</p>
+<p>and don't look back."</p>
+</div>
+
+<div class="section">
+<span class="section-label">Bridge</span>
+<p>I took the skull lantern,</p>
+<p>a jaw with a guttering grin.</p>
+<p>I held it by a dangling spine</p>
+<p>And the poppet said, "Bring it."</p>
+<p>I carried that dead, white glow</p>
+<p>like a warning with teeth inside.</p>
+</div>
+
+<div class="section">
+<span class="section-label">Final Verse</span>
+<p>I reached the cottage I had been sent from,</p>
+<p>skull held high, its glare lighting the porch.</p>
+<p>The latch gave once. The door stood open.</p>
+<p>By dawn there was no sound, no step, no woman at the hearth</p>
+<span class="annotated" onclick="showAnnotation('c')">
+<p>Just a fist of ash on the boards</p>
+<p>and two diamond earrings,</p>
+</span>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<aside class="annotation-panel" id="panel">
+<div class="panel-inner">
+
+<div class="panel-letter">✶</div>
+
+<div class="panel-title">
+<p>The Poppet </p>
+<p style="font-size:1rem; font-family:Inter,sans-serif; opacity:.7; margin-top:6px;">after "Vasilisa the Beautiful," Russian folk tale</p>
+</div>
+
+
+<div class="panel-letter">✶</div>
+
+<div class="panel-title">
+Annotations
+</div>
+
+<div class="panel-body" id="annotationText">
+Select a highlighted lyric to reveal notes, references, and commentary.
+</div>
+
+<div class="footer-note">
+Annotated edition • Reena The Harpy
+</div>
+
+</div>
+</aside>
+
+</div>
+
+<script>
+
+const annotations = {
+
+a:{
+title:"The Morning Is Wiser Than the Evening",
+text:`A near-direct line from the original tale — the doll's stock advice to Vasilisa whenever a task looks impossible at night. It's a lift of the Russian proverb "utro vechera mudrenee," and in both the folk tale and here it functions as a lullaby that's also a strategy: sleep on it, the answer shows up by daylight.`
+},
+
+b:{
+title:"The House on Chicken Legs",
+text:`Baba Yaga's hut in the original tale famously stands and turns on chicken legs, fenced by a yard of skulls whose eye sockets light the way for visitors after dark. The image is kept almost untouched here — it's one of the most recognizable pictures in Slavic folklore, and the song leans on it rather than rewriting it.`
+},
+
+c:{
+title:"Ash and Earrings",
+text:`In the source tale, the skull's fire burns the cruel stepmother and stepsisters to ash by morning while Vasilisa is spared. The diamond earrings are this retelling's own addition — a small, glinting leftover where a person used to be, and a quieter final image than the original's plain disappearance.`
+},
+
+};
+
+function showAnnotation(key){
+
+const panel = document.getElementById("panel");
+
+document.querySelector(".panel-letter").textContent =
+key.toUpperCase();
+
+document.querySelector(".panel-title").textContent =
+annotations[key].title;
+
+document.getElementById("annotationText").innerHTML =
+annotations[key].text;
+
+panel.classList.add("open");
+}
+</script>
+
+</body>
+</html>
